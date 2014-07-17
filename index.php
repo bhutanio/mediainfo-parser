@@ -4,8 +4,8 @@ require('media_info.php');
 
 $data = '
 General
-Unique ID                                : 243564388949724847067150812838947806125 (0xB73CCB858B3148AFB2F1A53F1B995BAD)
-Complete name                            : M:\OLD MOVIES\Showgirls.1995.720p.BluRay.mkv
+Unique ID                                : xx (yy)
+Complete name                            : Test Movie.mkv
 Format                                   : Matroska
 Format version                           : Version 2
 File size                                : 8.34 GiB
