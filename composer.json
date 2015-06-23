@@ -1,5 +1,5 @@
 {
-    "name": "bhutanio/php-mediainfo",
+    "name": "bhutanio/mediainfo-parser",
     "description": "Parse MediInfo text into PHP array.",
     "keywords": [
         "mediainfo", "media info", "mediainfo parser", "parser"
