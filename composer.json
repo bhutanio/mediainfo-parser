@@ -1,0 +1,17 @@
+{
+    "name": "bhutanio/php-mediainfo",
+    "description": "Parse MediInfo text into PHP array.",
+    "keywords": [
+        "mediainfo", "media info", "mediainfo parser", "parser"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bhutanio\\MediaInfo\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
