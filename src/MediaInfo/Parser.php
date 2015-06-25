@@ -23,9 +23,11 @@ class Parser
             }
         }
 
+
         if (count($output)) {
             $output = $this->parseSections($output);
         }
+        
 
         return $this->formatOutput($output);
     }
