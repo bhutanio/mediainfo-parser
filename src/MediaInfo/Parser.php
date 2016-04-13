@@ -148,6 +148,9 @@ class Parser
                             case "encoding settings":
                                 $output['encoding_settings'] = $value;
                                 break;
+                            case "language":
+                                $output['language'] = $value;
+                                break;
                         }
                         break;
 
