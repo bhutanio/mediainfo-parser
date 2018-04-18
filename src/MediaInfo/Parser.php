@@ -27,7 +27,7 @@ class Parser
         if (count($output)) {
             $output = $this->parseSections($output);
         }
-        
+
 
         return $this->formatOutput($output);
     }
@@ -45,6 +45,7 @@ class Parser
                 }
             }
         }
+
         return $output;
     }
 
@@ -100,9 +101,11 @@ class Parser
                                 break;
                             case "width":
                                 $output['width'] = $this->parseWidthHeight($value);
+                                $output['anamorphic_width'] = $this->parseWidthHeight($value, true);
                                 break;
                             case "height":
                                 $output['height'] = $this->parseWidthHeight($value);
+                                $output['anamorphic_height'] = $this->parseWidthHeight($value, true);
                                 break;
                             case "stream size":
                             case "stream_size":
@@ -123,7 +126,8 @@ class Parser
                                 break;
                             case "display aspect ratio":
                             case "displayaspectratio":
-                                $output['aspect_ratio'] = str_replace("/", ":", $value); // mediainfo sometimes uses / instead of :
+                                $output['aspect_ratio'] = str_replace("/", ":",
+                                    $value); // mediainfo sometimes uses / instead of :
                                 break;
                             case "bit rate":
                             case "bitrate":
@@ -214,6 +218,7 @@ class Parser
                 }
             }
         }
+
         return $output;
     }
 
@@ -221,6 +226,7 @@ class Parser
     {
         $string = str_replace("\\", "/", $string);
         $path_parts = pathinfo($string);
+
         return $path_parts['basename'];
     }
 
@@ -239,25 +245,44 @@ class Parser
     {
         $string = str_replace(' ', '', $string);
         $string = str_replace('kbps', ' kbps', $string);
+
         return $string;
     }
 
-    private function parseWidthHeight($string)
+    private function parseWidthHeight($string, $anamorphic = false)
     {
-        return str_replace(array('pixels', ' '), null, $string);
+        $pixels = str_replace(['pixels', ' '], null, $string);
+        if (strstr($pixels, '>>')) {
+            $parsed = explode('>>', $pixels);
+            if ($anamorphic) {
+                if (isset($parsed[0])) {
+                    return $parsed[0];
+                }
+            }
+            if (isset($parsed[1])) {
+                return $parsed[1];
+            }
+        }
+
+        if ($anamorphic) {
+            return null;
+        }
+
+        return $pixels;
     }
 
     private function parseAudioChannels($string)
     {
-        $replace = array(
-            ' ' => '',
+        $replace = [
+            ' '        => '',
             'channels' => 'ch',
-            'channel' => 'ch',
-            '1ch' => '1.0ch',
-            '7ch' => '6.1ch',
-            '6ch' => '5.1ch',
-            '2ch' => '2.0ch'
-        );
+            'channel'  => 'ch',
+            '1ch'      => '1.0ch',
+            '7ch'      => '6.1ch',
+            '6ch'      => '5.1ch',
+            '2ch'      => '2.0ch',
+        ];
+
         return str_ireplace(array_keys($replace), $replace, $string);
     }
 
@@ -268,6 +293,7 @@ class Parser
         $output['video'] = !empty($data['video']) ? $data['video'] : null;
         $output['audio'] = !empty($data['audio']) ? $data['audio'] : null;
         $output['text'] = !empty($data['text']) ? $data['text'] : null;
+
         return $output;
     }
 
@@ -278,13 +304,13 @@ class Parser
 
     private function computerSize($number, $size)
     {
-        $bytes = (float) $number;
+        $bytes = (float)$number;
         $size = strtolower($size);
 
         $factors = ['b' => 0, 'kb' => 1, 'mb' => 2, 'gb' => 3, 'tb' => 4, 'pb' => 5, 'eb' => 6, 'zb' => 7, 'yb' => 8];
 
         if (isset($factors[$size])) {
-            return (float) number_format($bytes * pow(1024, $factors[$size]), 2, '.', '');
+            return (float)number_format($bytes * pow(1024, $factors[$size]), 2, '.', '');
         }
 
         return $bytes;
