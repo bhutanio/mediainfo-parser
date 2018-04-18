@@ -149,13 +149,13 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/bhutanio/mediainfo-parser.svg?style=flat-square
 [ico-coveralls]: https://img.shields.io/coveralls/bhutanio/mediainfo-parser.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/sensiolabs/i/99e21d84-8d2b-44c5-9107-059e16277ce6.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/sensiolabs/i/c309a523-bbdb-4b90-9774-8f1cc8625ca9.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/bhutanio/mediainfo-parser.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/bhutanio/mediainfo-parser
 [link-travis]: https://travis-ci.org/bhutanio/mediainfo-parser
 [link-coveralls]: https://coveralls.io/r/bhutanio/mediainfo-parser
-[link-code-quality]: https://insight.sensiolabs.com/projects/99e21d84-8d2b-44c5-9107-059e16277ce6
+[link-code-quality]: https://insight.sensiolabs.com/projects/c309a523-bbdb-4b90-9774-8f1cc8625ca9
 [link-downloads]: https://packagist.org/packages/bhutanio/mediainfo-parser
 [link-author]: https://github.com/rchouinard
 [link-contributors]: https://github.com/bhutanio/mediainfo-parser/graphs/contributors
