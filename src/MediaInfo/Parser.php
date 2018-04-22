@@ -20,6 +20,8 @@ class Parser
             }
             if (isset($section)) {
                 $output[$section][] = $line;
+            } else {
+                $output['general'][] = $line;
             }
         }
 
@@ -64,6 +66,7 @@ class Parser
                 switch ($section) {
 
                     case 'general':
+                    case '':
                         switch ($property) {
                             case "complete name":
                             case "completename":
