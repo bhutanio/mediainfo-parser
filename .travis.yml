@@ -5,5 +5,8 @@ php:
   - 7.1
   - 7.2
 
+install:
+  - travis_retry composer update --no-interaction --no-suggest
+
 script:
   - vendor/bin/phpunit tests/
